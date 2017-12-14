@@ -1,0 +1,15 @@
+echo "____"
+echo "TEST: good input -> PASS"
+./fillit good.fillit
+echo "____"
+echo "TEST: max tetriminos -> PASS"
+./fillit max-tetriminos.fillit
+echo "____"
+echo "TEST: leading newline -> FAIL"
+./fillit leading-newline.fillit
+echo "____"
+echo "TEST: trailing newline -> FAIL"
+./fillit trailing-newline.fillit
+echo "____"
+echo "TEST: too many tetriminos in input file -> FAIL"
+./fillit 27-tetriminos.fillit
