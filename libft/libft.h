@@ -6,7 +6,7 @@
 /*   By: scamargo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/01 12:56:43 by scamargo          #+#    #+#             */
-/*   Updated: 2017/12/08 13:56:21 by scamargo         ###   ########.fr       */
+/*   Updated: 2017/12/14 16:52:43 by scamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,6 @@ int				ft_power(int num, int exp);
 void			ft_sort_integer_table(int *table, int size);
 int				ft_factorial(int nb);
 int				*ft_range(int min, int max);
+char			**ft_init_chartable(size_t width, size_t height);
 
 #endif
