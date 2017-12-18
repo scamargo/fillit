@@ -12,7 +12,6 @@
 
 #include "libft.h"
 
-// TODO: first line has one less '.' than rest
 static char	**init_canvas(int *side_length)
 {
 	char	**canvas;
