@@ -17,6 +17,51 @@
 
 #define BUFF_SIZE 545
 
+static int is_valid_tetrimino(char str[4][4])
+{
+	/*Square*/
+	/*Line vert*/
+	/*Line horiz*/
+	/*T*/
+	/*T down*/
+	/*T right*/
+	/*T left*/
+	/*J*/
+	/*J down*/
+	/*J right*/
+	/*J left*/
+	/*L*/
+	/*L down*/
+	/*L right*/
+	/*L left*/
+	/*S*/
+	/*S rot*/
+	/*Z*/
+	/*Z rot*/
+
+	if ((str[0][0] == str[0][1] && str[1][0] == str[1][1]) ||
+		(str[0][0] == str[1][0] && str[2][0] == str[3][0]) ||
+		(str[0][0] == str[0][1] && str[0][2] == str[0][3]) ||
+		(str[0][0] == str[0][1] && str[0][2] == str[1][1]) ||
+		(str[0][1] == str[1][0] && str[1][1] == str[1][2]) ||
+		(str[1][0] == str[0][1] && str[1][1] == str[2][1]) ||
+		(str[0][0] == str[1][0] && str[2][0] == str[1][1]) ||
+		(str[0][1] == str[1][1] && str[2][1] == str[2][0]) ||
+		(str[0][0] == str[0][1] && str[1][0] == str[2][0]) ||
+		(str[0][0] == str[1][0] && str[1][1] == str[1][2]) ||
+		(str[0][0] == str[0][1] && str[0][2] == str[1][2]) ||
+		(str[0][0] == str[1][0] && str[2][0] == str[2][1]) ||
+		(str[0][0] == str[0][1] && str[1][0] == str[2][0]) ||
+		(str[0][0] == str[1][0] && str[0][1] == str[0][2]) ||
+		(str[1][0] == str[1][1] && str[1][2] == str[0][2]) ||
+		(str[0][2] == str[0][1] && str[1][1] == str[1][0]) ||
+		(str[0][0] == str[1][0] && str[1][1] == str[2][1]) ||
+		(str[0][0] == str[0][1] && str[1][1] == str[1][2]) ||
+		(str[2][0] == str[1][0] && str[1][1] == str[0][1]))
+			return (1);
+
+	return (0);
+}
 static void		set_tetrimino_offsets(int *x_off, int *y_off, char *str)
 {
 	BEGIN_TET_LOOP
@@ -84,7 +129,9 @@ static int	is_valid_square(char *input, int *i_ptr, t_list **tet_ptr, int count)
 	}
 	str[k] = '\0';
 	if(!(tet = parse_tetrimino(str, count)))
-	   return (0);
+		return (0);
+	if (!is_valid_tetrimino(tet->blocks))
+		return (0);
 	*tet_ptr = ft_lstnew(tet, sizeof(t_tet));
 	if (block_count != 4)
 		return (0);
