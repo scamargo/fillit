@@ -6,7 +6,7 @@
 /*   By: scamargo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 12:15:26 by scamargo          #+#    #+#             */
-/*   Updated: 2017/12/18 15:27:54 by scamargo         ###   ########.fr       */
+/*   Updated: 2017/12/18 20:39:12 by scamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,21 +39,19 @@
 int		main(int argc, char **argv)
 {
 	t_list	*tets;
-	short	number_of_tets;
 
 	if (argc != 2)
 	{
 		ft_putstr("usage: ./fillit input_file\n");
 		return (1);
 	}
-	number_of_tets = 0;
-	if (!is_valid_input(argv[1], &tets, &number_of_tets))
+	if (!is_valid_input(argv[1], &tets))
 	{
 		ft_putstr("error\n");
 		return (2);
 	}
 	//ft_lstiter(tets, print_tets);
-	if (!find_square(tets, number_of_tets))
+	if (!find_square(tets))
 	{
 		ft_putstr("malloc error\n");
 		return (3);

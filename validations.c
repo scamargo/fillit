@@ -6,7 +6,7 @@
 /*   By: scamargo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 12:32:08 by scamargo          #+#    #+#             */
-/*   Updated: 2017/12/18 15:04:14 by scamargo         ###   ########.fr       */
+/*   Updated: 2017/12/18 21:03:38 by scamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void		set_tetrimino_offsets(int *x_off, int *y_off, char *str)
 }
 
 /*
- ** TODO: set tetrimino properties -- height, width, leftmost, topmost
+ ** TODO: set tetrimino properties -- leftmost, topmost
 */
 static t_tet	*parse_tetrimino(char *str, int tet_count)
 {
@@ -47,7 +47,11 @@ static t_tet	*parse_tetrimino(char *str, int tet_count)
 	BEGIN_TET_LOOP
 	tet->blocks[y][x] = '.';
 	if (str[i] == '#')
+	{
 		tet->blocks[y - y_offset][x - x_offset] = 'A' + tet_count;
+		tet->width = x - x_offset + 1;
+		tet->height = y - y_offset + 1;
+	}
 	END_TET_LOOP
 	tet->used = 0;
 	return (tet);
@@ -88,7 +92,7 @@ static int	is_valid_square(char *input, int *i_ptr, t_list **tet_ptr, int count)
 	return (1);
 }
 
-int			is_valid_input(char *input_file, t_list **tets, short *num_of_tetriminos)
+int			is_valid_input(char *input_file, t_list **tets)
 {
 	int		file_descriptor;
 	int		reader;
@@ -96,7 +100,9 @@ int			is_valid_input(char *input_file, t_list **tets, short *num_of_tetriminos)
 	char	extra_buff[1];
 	int		i;
 	t_list	*current_tet;
+	int		num_of_tetriminos;
 
+	num_of_tetriminos = 0;
 	if(!(buff = (char*)ft_memalloc(BUFF_SIZE + 1)))
 		return (0);
 	file_descriptor = open(input_file, O_RDONLY);
@@ -109,7 +115,7 @@ int			is_valid_input(char *input_file, t_list **tets, short *num_of_tetriminos)
 	i = 0;
 	while (1)
 	{
-		if (!is_valid_square(buff, &i, &current_tet, *num_of_tetriminos))
+		if (!is_valid_square(buff, &i, &current_tet, num_of_tetriminos))
 			return (0);
 		// TODO: add validated tetrimino to BACK of linked list
 		ft_lstadd(tets, current_tet);
@@ -117,7 +123,7 @@ int			is_valid_input(char *input_file, t_list **tets, short *num_of_tetriminos)
 			break ;
 		if (buff[i++] != '\n')
 			return (0);
-		(*num_of_tetriminos)++;
+		num_of_tetriminos++;
 	}
 	free(buff);
 	return (1);
