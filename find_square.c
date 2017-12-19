@@ -6,7 +6,7 @@
 /*   By: scamargo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 22:09:23 by scamargo          #+#    #+#             */
-/*   Updated: 2017/12/18 21:09:37 by scamargo         ###   ########.fr       */
+/*   Updated: 2017/12/18 22:07:56 by scamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static char	**init_canvas(int side_length)
 	return (canvas);
 }
 
-static int	set_tetrimino_position(t_tet *tet, char **canvas_cpy, int side_length, int start[2])
+static int	set_tetrimino_position(t_tet *tet, char **canvas, int side_length, int start[2])
 {
 	int y;
 	int x;
@@ -72,7 +72,10 @@ static int	set_tetrimino_position(t_tet *tet, char **canvas_cpy, int side_length
 		while (c < tet->width)
 		{
 			// TODO: check for conflicts before placing
-			canvas_cpy[y][x] = tet->blocks[r][c];
+			if (canvas[y][x] != '.' && tet->blocks[r][c] != '.')
+				return (0);
+			if(tet->blocks[r][c] != '.')
+				canvas[y][x] = tet->blocks[r][c];
 			x++;
 			c++;
 		}
@@ -88,27 +91,29 @@ static int	add_tetrimino(t_list *tets, char **canvas, int side_length)
 	int		y;
 	int		x;
 	int		start[2];
+	int		i;
 
 	y = 0;
 	x = 0;
-	// TODO: if piece width or height is bigger than side_length, return 0
-	if (!(canvas_cpy = ft_memalloc(side_length * side_length)))
+	if (((t_tet*)tets->content)->width > side_length || ((t_tet*)tets->content)->height > side_length)
+		return (0);
+	if(!(canvas_cpy = ft_init_chartable(side_length, side_length)))
 		return (0);
 	while (y < side_length)
 	{
 		x = 0;
 		while (x < side_length)
 		{
-			// reset canvas copy
-			// TODO: verify this memmove is working
 			start[0] = x;
 			start[1] = y;
-			canvas_cpy = ft_memmove(canvas_cpy, canvas, side_length * side_length);
-			ft_putstr("set tetrimino at x: ");
-			ft_putnbr(x);
-			ft_putstr(", y: ");
-			ft_putnbr(y);
-			ft_putchar('\n');
+			i = 0;
+			while (i < side_length)
+			{
+				ft_memmove(canvas_cpy[i], canvas[i], side_length);
+				i++;
+			}
+			ft_putstr("\n\n");
+			print_square(canvas_cpy, side_length);
 			if (set_tetrimino_position((t_tet*)tets->content, canvas_cpy, side_length, start))
 			{
 				if (!tets->next)
