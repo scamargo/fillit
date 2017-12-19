@@ -6,7 +6,7 @@
 /*   By: scamargo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 12:15:26 by scamargo          #+#    #+#             */
-/*   Updated: 2017/12/14 23:43:31 by scamargo         ###   ########.fr       */
+/*   Updated: 2017/12/18 15:27:54 by scamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 #include "fillit.h"
 
 // FOR TESTING PURPPOSES
-void	print_tets(t_list *node)
+/*void	print_tets(t_list *node)
 {
-	t_tet	*tet = (t_tet*)node->content;
+	t_tet	*tet;
 	int		y;
 	int		x;
 
 	y = 0;
+	tet = (t_tet*)node->content;
 	while (y < 4)
 	{
 		x = 0;
@@ -33,25 +34,26 @@ void	print_tets(t_list *node)
 		y++;
 	}
 	ft_putchar('\n');
-}
+}*/
 
 int		main(int argc, char **argv)
 {
-	char	*input;
 	t_list	*tets;
+	short	number_of_tets;
 
 	if (argc != 2)
 	{
 		ft_putstr("usage: ./fillit input_file\n");
 		return (1);
 	}
-	if (!is_valid_input(argv[1], &input, &tets))
+	number_of_tets = 0;
+	if (!is_valid_input(argv[1], &tets, &number_of_tets))
 	{
 		ft_putstr("error\n");
 		return (2);
 	}
-	ft_lstiter(tets, print_tets); 
-	if(!find_square(input))
+	//ft_lstiter(tets, print_tets);
+	if (!find_square(tets, number_of_tets))
 	{
 		ft_putstr("malloc error\n");
 		return (3);

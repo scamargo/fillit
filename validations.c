@@ -6,7 +6,7 @@
 /*   By: scamargo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 12:32:08 by scamargo          #+#    #+#             */
-/*   Updated: 2017/12/14 23:55:22 by scamargo         ###   ########.fr       */
+/*   Updated: 2017/12/18 15:04:14 by scamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,70 +19,36 @@
 
 static void		set_tetrimino_offsets(int *x_off, int *y_off, char *str)
 {
-	int y;
-	int x;
-	int i;
-	
-	y = 0;
-	i = 0;
-	*y_off = -1;
-	*x_off = -1;
-	while (y < 4)
+	BEGIN_TET_LOOP
+	if (str[i] == '#')
 	{
-		x = 0;
-		while (x < 4)
-		{
-			if (str[i] == '#')
-			{
-				if (*x_off == -1)
-					*x_off = x;
-				if (*y_off == -1)
-					*y_off = y;
-			}
-			x++;
-			i++;
-		}
-		y++;
-		i++;
+		if (*x_off == -1)
+			*x_off = x;
+		if (*y_off == -1)
+			*y_off = y;
 	}
+	END_TET_LOOP
 }
 
-// TODO: set blocks in top-left of array
+/*
+ ** TODO: set tetrimino properties -- height, width, leftmost, topmost
+*/
 static t_tet	*parse_tetrimino(char *str, int tet_count)
 {
 	t_tet	*tet;
-	int		y;
-	int		x;
-	int		i;
 	int		y_offset;
 	int		x_offset;
 
-	// TODO: validate tetrimino
-	y_offset = 0;
-	x_offset = 0;
+	y_offset = -1;
+	x_offset = -1;
 	set_tetrimino_offsets(&x_offset, &y_offset, str);
 	if (!(tet = (t_tet*)ft_memalloc(sizeof(t_tet))))
 		return (NULL);
-	i = 0;
-	y = 0;
-	while (y < 4)
-	{
-		x = 0;
-		while (x < 4)
-		{
-			tet->blocks[y][x] = '.';
-			if (str[i] == '#')
-				tet->blocks[y - y_offset][x - x_offset] = 'A' + tet_count;
-			x++;
-			i++;
-		}
-		y++;
-		i++;
-	}
-	//tet->height = 1;
-	//tet->width = 4;
-	//tet->leftmost = {0, 0};
-	//tet->topmost = {0, 0};
+	BEGIN_TET_LOOP
+	tet->blocks[y][x] = '.';
+	if (str[i] == '#')
+		tet->blocks[y - y_offset][x - x_offset] = 'A' + tet_count;
+	END_TET_LOOP
 	tet->used = 0;
 	return (tet);
 }
@@ -122,7 +88,7 @@ static int	is_valid_square(char *input, int *i_ptr, t_list **tet_ptr, int count)
 	return (1);
 }
 
-int			is_valid_input(char *input_file, char **buff_ptr, t_list **tets)
+int			is_valid_input(char *input_file, t_list **tets, short *num_of_tetriminos)
 {
 	int		file_descriptor;
 	int		reader;
@@ -130,11 +96,9 @@ int			is_valid_input(char *input_file, char **buff_ptr, t_list **tets)
 	char	extra_buff[1];
 	int		i;
 	t_list	*current_tet;
-	int		n;
 
-	if(!(*buff_ptr = (char*)ft_memalloc(BUFF_SIZE + 1)))
+	if(!(buff = (char*)ft_memalloc(BUFF_SIZE + 1)))
 		return (0);
-	buff = *buff_ptr;
 	file_descriptor = open(input_file, O_RDONLY);
 	if (file_descriptor == -1)
 		return (0);
@@ -143,10 +107,9 @@ int			is_valid_input(char *input_file, char **buff_ptr, t_list **tets)
 	if (read(file_descriptor, extra_buff, 1))
 		return (0);
 	i = 0;
-	n = 0;
 	while (1)
 	{
-		if (!is_valid_square(buff, &i, &current_tet, n))
+		if (!is_valid_square(buff, &i, &current_tet, *num_of_tetriminos))
 			return (0);
 		// TODO: add validated tetrimino to BACK of linked list
 		ft_lstadd(tets, current_tet);
@@ -154,7 +117,8 @@ int			is_valid_input(char *input_file, char **buff_ptr, t_list **tets)
 			break ;
 		if (buff[i++] != '\n')
 			return (0);
-		n++;
+		(*num_of_tetriminos)++;
 	}
+	free(buff);
 	return (1);
 }

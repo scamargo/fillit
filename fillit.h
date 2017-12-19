@@ -6,7 +6,7 @@
 /*   By: scamargo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 12:30:20 by scamargo          #+#    #+#             */
-/*   Updated: 2017/12/14 23:11:48 by scamargo         ###   ########.fr       */
+/*   Updated: 2017/12/18 15:24:47 by scamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 # define FILLIT_H
 
-typedef struct s_tet
+# include "libft.h"
+
+typedef struct	s_tet
 {
 	char	blocks[4][4];
 	int		height;
@@ -24,7 +26,10 @@ typedef struct s_tet
 	int		used;
 }				t_tet;
 
-int	is_valid_input(char *file_name, char **buff_ptr, t_list **tets);
-int	find_square(char *input);
+# define BEGIN_TET_LOOP int y=0;int x=0;int i=0;while(y<4){x=0;while(x<4){
+# define END_TET_LOOP x++;i++;}y++;i++;}
+
+int				is_valid_input(char *file_name, t_list **tets, short *count);
+int				find_square(t_list *tets, short number_of_tets);
 
 #endif
