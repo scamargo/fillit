@@ -6,7 +6,7 @@
 /*   By: scamargo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 12:32:08 by scamargo          #+#    #+#             */
-/*   Updated: 2017/12/19 17:26:14 by scamargo         ###   ########.fr       */
+/*   Updated: 2017/12/19 17:37:13 by scamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,12 @@ static t_tet	*parse_tetrimino(char *str, int tet_count)
 	t_tet	*tet;
 	int		y_offset;
 	int		x_offset;
+	int		max[2];
 
 	y_offset = -1;
 	x_offset = -1;
+	max[0] = 0;
+	max[1] = 0;
 	set_tetrimino_offsets(&x_offset, &y_offset, str);
 	if (!(tet = (t_tet*)ft_memalloc(sizeof(t_tet))))
 		return (NULL);
@@ -94,8 +97,12 @@ static t_tet	*parse_tetrimino(char *str, int tet_count)
 	if (str[i] == '#')
 	{
 		tet->blocks[y - y_offset][x - x_offset] = 'A' + tet_count;
-		tet->width = x - x_offset + 1;
-		tet->height = y - y_offset + 1;
+		if (x > max[0])
+			max[0] = x;
+		if (y > max[1])
+			max[1] = y;
+		tet->width = max[0] - x_offset + 1;
+		tet->height = max[1] - y_offset + 1;
 	}
 	END_TET_LOOP
 	tet->used = 0;
