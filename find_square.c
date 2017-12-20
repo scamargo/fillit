@@ -6,7 +6,7 @@
 /*   By: scamargo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 22:09:23 by scamargo          #+#    #+#             */
-/*   Updated: 2017/12/18 22:07:56 by scamargo         ###   ########.fr       */
+/*   Updated: 2017/12/19 18:11:34 by scamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ static int	set_tetrimino_position(t_tet *tet, char **canvas, int side_length, in
 		x = start[0];
 		while (c < tet->width)
 		{
-			// TODO: check for conflicts before placing
 			if (canvas[y][x] != '.' && tet->blocks[r][c] != '.')
 				return (0);
 			if(tet->blocks[r][c] != '.')
@@ -112,8 +111,8 @@ static int	add_tetrimino(t_list *tets, char **canvas, int side_length)
 				ft_memmove(canvas_cpy[i], canvas[i], side_length);
 				i++;
 			}
-			ft_putstr("\n\n");
-			print_square(canvas_cpy, side_length);
+			//print_square(canvas_cpy, side_length);
+			//ft_putstr("\n\n");
 			if (set_tetrimino_position((t_tet*)tets->content, canvas_cpy, side_length, start))
 			{
 				if (!tets->next)
@@ -124,7 +123,8 @@ static int	add_tetrimino(t_list *tets, char **canvas, int side_length)
 					free(canvas_cpy);
 					return (1);
 				}
-				return (add_tetrimino(tets->next, canvas_cpy, side_length));
+				if (add_tetrimino(tets->next, canvas_cpy, side_length))
+					return (1);
 			}
 			x++;
 		}
