@@ -6,7 +6,7 @@
 /*   By: scamargo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 12:15:26 by scamargo          #+#    #+#             */
-/*   Updated: 2017/12/18 20:39:12 by scamargo         ###   ########.fr       */
+/*   Updated: 2017/12/19 17:26:40 by scamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int		main(int argc, char **argv)
 {
 	t_list	*tets;
 
+	tets = NULL;
 	if (argc != 2)
 	{
 		ft_putstr("usage: ./fillit input_file\n");
