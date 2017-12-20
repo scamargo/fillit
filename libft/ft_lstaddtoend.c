@@ -23,6 +23,6 @@ void	ft_lstaddtoend(t_list **head, t_list *new)
 		return ;
 	}
 	while (last->next)
-		last = (*head)->next;
+		last = last->next;
 	last->next = new;
 }

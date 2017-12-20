@@ -176,8 +176,8 @@ int			is_valid_input(char *input_file, t_list **tets)
 	{
 		if (!is_valid_square(buff, &i, &current_tet, num_of_tetriminos))
 			return (0);
-		//ft_lstaddtoend(tets, current_tet);
-		ft_lstadd(tets, current_tet);
+		ft_lstaddtoend(tets, current_tet);
+		//ft_lstadd(tets, current_tet);
 		if (buff[i] == '\0')
 			break ;
 		if (buff[i++] != '\n')
