@@ -6,7 +6,7 @@
 /*   By: scamargo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 12:32:08 by scamargo          #+#    #+#             */
-/*   Updated: 2017/12/19 17:37:13 by scamargo         ###   ########.fr       */
+/*   Updated: 2017/12/19 18:44:00 by scamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,12 @@ static t_tet	*parse_tetrimino(char *str, int tet_count)
 		tet->height = max[1] - y_offset + 1;
 	}
 	END_TET_LOOP
-	tet->used = 0;
+	ft_putchar('A' + tet_count);
+	ft_putstr(": w: ");
+	ft_putnbr(tet->width);
+	ft_putstr(", h: ");
+	ft_putnbr(tet->height);
+	ft_putchar('\n');
 	return (tet);
 }
 	
@@ -171,7 +176,8 @@ int			is_valid_input(char *input_file, t_list **tets)
 	{
 		if (!is_valid_square(buff, &i, &current_tet, num_of_tetriminos))
 			return (0);
-		ft_lstaddtoend(tets, current_tet);
+		//ft_lstaddtoend(tets, current_tet);
+		ft_lstadd(tets, current_tet);
 		if (buff[i] == '\0')
 			break ;
 		if (buff[i++] != '\n')

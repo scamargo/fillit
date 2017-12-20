@@ -6,7 +6,7 @@
 /*   By: scamargo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 22:09:23 by scamargo          #+#    #+#             */
-/*   Updated: 2017/12/19 18:11:34 by scamargo         ###   ########.fr       */
+/*   Updated: 2017/12/19 18:40:36 by scamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,9 +153,5 @@ int			find_square(t_list *tets)
 		ft_putnbr(side_length);
 		ft_putchar('\n');
 	}
-	// TODO: loop through unused tetriminos to find smallest square
-	// TODO: make trimmed canvas two-dimensional array
-	//canvas = trim_canvas(&canvas, width, height);
-	//print_square(canvas, side_length);
 	return (1);
 }
