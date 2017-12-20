@@ -64,13 +64,22 @@ static int is_valid_tetrimino(char str[4][4])
 }
 static void		set_tetrimino_offsets(int *x_off, int *y_off, char *str)
 {
+
+	int min_x;
+	int min_y;
+
+	min_x = 0;
+	min_y = 0;
 	BEGIN_TET_LOOP
 	if (str[i] == '#')
 	{
-		if (*x_off == -1)
-			*x_off = x;
-		if (*y_off == -1)
-			*y_off = y;
+		if (x < min_x)
+			min_x = x;
+		if (y < min_y)
+			min_y = y;
+
+		*x_off = min_x;
+		*y_off = min_y;
 	}
 	END_TET_LOOP
 }
