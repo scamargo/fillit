@@ -6,14 +6,14 @@
 /*   By: scamargo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 12:15:26 by scamargo          #+#    #+#             */
-/*   Updated: 2017/12/19 17:26:40 by scamargo         ###   ########.fr       */
+/*   Updated: 2017/12/20 18:41:55 by scamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "fillit.h"
 
-// FOR TESTING PURPPOSES
+//FOR TESTING PURPPOSES
 /*void	print_tets(t_list *node)
 {
 	t_tet	*tet;

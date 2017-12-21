@@ -6,7 +6,7 @@
 /*   By: scamargo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 12:32:08 by scamargo          #+#    #+#             */
-/*   Updated: 2017/12/19 18:44:00 by scamargo         ###   ########.fr       */
+/*   Updated: 2017/12/20 18:41:35 by scamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,14 @@ static int is_valid_tetrimino(char str[4][4])
 
 	return (0);
 }
+
 static void		set_tetrimino_offsets(int *x_off, int *y_off, char *str)
 {
-
 	int min_x;
 	int min_y;
 
-	min_x = 0;
-	min_y = 0;
+	min_x = 5;
+	min_y = 5;
 	BEGIN_TET_LOOP
 	if (str[i] == '#')
 	{
@@ -94,8 +94,8 @@ static t_tet	*parse_tetrimino(char *str, int tet_count)
 	int		x_offset;
 	int		max[2];
 
-	y_offset = -1;
-	x_offset = -1;
+	y_offset = 0;
+	x_offset = 0;
 	max[0] = 0;
 	max[1] = 0;
 	set_tetrimino_offsets(&x_offset, &y_offset, str);
@@ -114,12 +114,6 @@ static t_tet	*parse_tetrimino(char *str, int tet_count)
 		tet->height = max[1] - y_offset + 1;
 	}
 	END_TET_LOOP
-	ft_putchar('A' + tet_count);
-	ft_putstr(": w: ");
-	ft_putnbr(tet->width);
-	ft_putstr(", h: ");
-	ft_putnbr(tet->height);
-	ft_putchar('\n');
 	return (tet);
 }
 	
