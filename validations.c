@@ -39,25 +39,25 @@ static int is_valid_tetrimino(char str[4][4])
 	/*Z*/
 	/*Z rot*/
 
-	if ((str[0][0] == str[0][1] && str[1][0] == str[1][1]) ||
-		(str[0][0] == str[1][0] && str[2][0] == str[3][0]) ||
-		(str[0][0] == str[0][1] && str[0][2] == str[0][3]) ||
-		(str[0][0] == str[0][1] && str[0][2] == str[1][1]) ||
-		(str[0][1] == str[1][0] && str[1][1] == str[1][2]) ||
-		(str[1][0] == str[0][1] && str[1][1] == str[2][1]) ||
-		(str[0][0] == str[1][0] && str[2][0] == str[1][1]) ||
-		(str[0][1] == str[1][1] && str[2][1] == str[2][0]) ||
-		(str[0][0] == str[0][1] && str[1][0] == str[2][0]) ||
-		(str[0][0] == str[1][0] && str[1][1] == str[1][2]) ||
-		(str[0][0] == str[0][1] && str[0][2] == str[1][2]) ||
-		(str[0][0] == str[1][0] && str[2][0] == str[2][1]) ||
-		(str[0][0] == str[0][1] && str[1][0] == str[2][0]) ||
-		(str[0][0] == str[1][0] && str[0][1] == str[0][2]) ||
-		(str[1][0] == str[1][1] && str[1][2] == str[0][2]) ||
-		(str[0][2] == str[0][1] && str[1][1] == str[1][0]) ||
-		(str[0][0] == str[1][0] && str[1][1] == str[2][1]) ||
-		(str[0][0] == str[0][1] && str[1][1] == str[1][2]) ||
-		(str[2][0] == str[1][0] && str[1][1] == str[0][1]))
+	if ((ft_isalpha(str[0][0]) &&  ft_isalpha(str[0][1]) &&  ft_isalpha(str[1][0]) &&  ft_isalpha(str[1][1])) ||
+		(ft_isalpha(str[0][0]) &&  ft_isalpha(str[1][0]) &&  ft_isalpha(str[2][0]) &&  ft_isalpha(str[3][0])) ||
+		(ft_isalpha(str[0][0]) &&  ft_isalpha(str[0][1]) &&  ft_isalpha(str[0][2]) &&  ft_isalpha(str[0][3])) ||
+		(ft_isalpha(str[0][0]) &&  ft_isalpha(str[0][1]) &&  ft_isalpha(str[0][2]) &&  ft_isalpha(str[1][1])) ||
+		(ft_isalpha(str[0][1]) &&  ft_isalpha(str[1][0]) &&  ft_isalpha(str[1][1]) &&  ft_isalpha(str[1][2])) ||
+		(ft_isalpha(str[1][0]) &&  ft_isalpha(str[0][1]) &&  ft_isalpha(str[1][1]) &&  ft_isalpha(str[2][1])) ||
+		(ft_isalpha(str[0][0]) &&  ft_isalpha(str[1][0]) &&  ft_isalpha(str[2][0]) &&  ft_isalpha(str[1][1])) ||
+		(ft_isalpha(str[0][1]) &&  ft_isalpha(str[1][1]) &&  ft_isalpha(str[2][1]) &&  ft_isalpha(str[2][0])) ||
+		(ft_isalpha(str[0][0]) &&  ft_isalpha(str[0][1]) &&  ft_isalpha(str[1][0]) &&  ft_isalpha(str[2][0])) ||
+		(ft_isalpha(str[0][0]) &&  ft_isalpha(str[1][0]) &&  ft_isalpha(str[1][1]) &&  ft_isalpha(str[1][2])) ||
+		(ft_isalpha(str[0][0]) &&  ft_isalpha(str[0][1]) &&  ft_isalpha(str[0][2]) &&  ft_isalpha(str[1][2])) ||
+		(ft_isalpha(str[0][0]) &&  ft_isalpha(str[1][0]) &&  ft_isalpha(str[2][0]) &&  ft_isalpha(str[2][1])) ||
+		(ft_isalpha(str[0][0]) &&  ft_isalpha(str[0][1]) &&  ft_isalpha(str[1][0]) &&  ft_isalpha(str[2][0])) ||
+		(ft_isalpha(str[0][0]) &&  ft_isalpha(str[1][0]) &&  ft_isalpha(str[0][1]) &&  ft_isalpha(str[0][2])) ||
+		(ft_isalpha(str[1][0]) &&  ft_isalpha(str[1][1]) &&  ft_isalpha(str[1][2]) &&  ft_isalpha(str[0][2])) ||
+		(ft_isalpha(str[0][2]) &&  ft_isalpha(str[0][1]) &&  ft_isalpha(str[1][1]) &&  ft_isalpha(str[1][0])) ||
+		(ft_isalpha(str[0][0]) &&  ft_isalpha(str[1][0]) &&  ft_isalpha(str[1][1]) &&  ft_isalpha(str[2][1])) ||
+		(ft_isalpha(str[0][0]) &&  ft_isalpha(str[0][1]) &&  ft_isalpha(str[1][1]) &&  ft_isalpha(str[1][2])) ||
+		(ft_isalpha(str[2][0]) &&  ft_isalpha(str[1][0]) &&  ft_isalpha(str[1][1]) &&  ft_isalpha(str[0][1])))
 			return (1);
 
 	return (0);
