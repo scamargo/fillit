@@ -6,7 +6,7 @@
 /*   By: scamargo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 12:32:08 by scamargo          #+#    #+#             */
-/*   Updated: 2017/12/20 18:41:35 by scamargo         ###   ########.fr       */
+/*   Updated: 2017/12/21 15:11:44 by scamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,7 +154,7 @@ static int	is_valid_square(char *input, int *i_ptr, t_list **tet_ptr, int count)
 	return (1);
 }
 
-int			is_valid_input(char *input_file, t_list **tets)
+int			is_valid_input(char *input_file, t_list **tets, size_t *num_of_tetriminos)
 {
 	int		file_descriptor;
 	int		reader;
@@ -162,9 +162,7 @@ int			is_valid_input(char *input_file, t_list **tets)
 	char	extra_buff[1];
 	int		i;
 	t_list	*current_tet;
-	int		num_of_tetriminos;
 
-	num_of_tetriminos = 0;
 	if(!(buff = (char*)ft_memalloc(BUFF_SIZE + 1)))
 		return (0);
 	file_descriptor = open(input_file, O_RDONLY);
@@ -177,15 +175,15 @@ int			is_valid_input(char *input_file, t_list **tets)
 	i = 0;
 	while (1)
 	{
-		if (!is_valid_square(buff, &i, &current_tet, num_of_tetriminos))
+		if (!is_valid_square(buff, &i, &current_tet, *num_of_tetriminos))
 			return (0);
 		ft_lstaddtoend(tets, current_tet);
+		(*num_of_tetriminos)++;
 		//ft_lstadd(tets, current_tet);
 		if (buff[i] == '\0')
 			break ;
 		if (buff[i++] != '\n')
 			return (0);
-		num_of_tetriminos++;
 	}
 	free(buff);
 	return (1);

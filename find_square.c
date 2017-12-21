@@ -6,12 +6,22 @@
 /*   By: scamargo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 22:09:23 by scamargo          #+#    #+#             */
-/*   Updated: 2017/12/19 18:40:36 by scamargo         ###   ########.fr       */
+/*   Updated: 2017/12/21 15:13:20 by scamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include "libft.h"
+
+static size_t sqrt_roundup(size_t num)
+{
+	size_t root;
+
+	root = 1;
+	while (root * root < num)
+		root++;
+	return (root);
+}
 
 static void	print_square(char **canvas, int side_length)
 {
@@ -119,26 +129,32 @@ static int	add_tetrimino(t_list *tets, char **canvas, int side_length)
 				{
 					// Yay! solution found
 					print_square(canvas_cpy, side_length);
-					free(canvas);
-					free(canvas_cpy);
+					ft_destroy_chartable(canvas_cpy);
 					return (1);
 				}
 				if (add_tetrimino(tets->next, canvas_cpy, side_length))
+				{
+					ft_destroy_chartable(canvas_cpy);
 					return (1);
+				}
 			}
 			x++;
 		}
 		y++;
 	}
+	ft_destroy_chartable(canvas_cpy);
 	return (0);
 }
 
-int			find_square(t_list *tets)
+int			find_square(t_list *tets, size_t number_of_tetriminos)
 {
 	int		side_length;
 	char	**canvas;
 
-	side_length = 2;
+	ft_putstr("tet count: ");
+	ft_putnbr(number_of_tetriminos);
+	ft_putchar('\n');
+	side_length = sqrt_roundup(number_of_tetriminos * 4);
 	if(!(canvas = init_canvas(side_length)))
 		return (0);
 	ft_putstr("side_length: ");
@@ -146,7 +162,7 @@ int			find_square(t_list *tets)
 	ft_putchar('\n');
 	while (!add_tetrimino(tets, canvas, side_length))
 	{
-		free(canvas);
+		ft_destroy_chartable(canvas);
 		if(!(canvas = init_canvas(++side_length)))
 			return (0);
 		ft_putstr("side_length: ");

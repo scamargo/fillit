@@ -6,7 +6,7 @@
 /*   By: scamargo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 12:30:20 by scamargo          #+#    #+#             */
-/*   Updated: 2017/12/18 20:39:42 by scamargo         ###   ########.fr       */
+/*   Updated: 2017/12/21 15:00:43 by scamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct	s_tet
 # define BEGIN_TET_LOOP int y=0;int x=0;int i=0;while(y<4){x=0;while(x<4){
 # define END_TET_LOOP x++;i++;}y++;i++;}
 
-int				is_valid_input(char *file_name, t_list **tets);
-int				find_square(t_list *tets);
+int				is_valid_input(char *file_name, t_list **tets, size_t *count);
+int				find_square(t_list *tets, size_t num_of_tetriminos);
 
 #endif
