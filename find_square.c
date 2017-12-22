@@ -6,7 +6,7 @@
 /*   By: scamargo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 22:09:23 by scamargo          #+#    #+#             */
-/*   Updated: 2017/12/21 16:42:39 by scamargo         ###   ########.fr       */
+/*   Updated: 2017/12/21 17:54:08 by scamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ static int	add_tetrimino(t_list *tets, char **canvas, int side_length)
 	int		y;
 	int		x;
 	int		start[2];
-	int		i;
 
 	y = 0;
 	x = 0;
@@ -115,14 +114,7 @@ static int	add_tetrimino(t_list *tets, char **canvas, int side_length)
 		{
 			start[0] = x;
 			start[1] = y;
-			i = 0;
-			while (i < side_length)
-			{
-				ft_memmove(canvas_cpy[i], canvas[i], side_length);
-				i++;
-			}
-			//print_square(canvas_cpy, side_length);
-			//ft_putstr("\n\n");
+			ft_memmove(canvas_cpy[0], canvas[0], side_length * side_length);
 			if (set_tetrimino_position((t_tet*)tets->content, canvas_cpy, side_length, start))
 			{
 				if (!tets->next)
