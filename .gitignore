@@ -3,3 +3,5 @@
 fillit
 *.fillit
 libft.a
+test.c
+*.o

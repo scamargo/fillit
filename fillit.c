@@ -6,35 +6,12 @@
 /*   By: scamargo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 12:15:26 by scamargo          #+#    #+#             */
-/*   Updated: 2017/12/21 16:41:19 by scamargo         ###   ########.fr       */
+/*   Updated: 2017/12/21 22:28:43 by scamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "fillit.h"
-
-//FOR TESTING PURPPOSES
-/*void	print_tets(t_list *node)
-{
-	t_tet	*tet;
-	int		y;
-	int		x;
-
-	y = 0;
-	tet = (t_tet*)node->content;
-	while (y < 4)
-	{
-		x = 0;
-		while (x < 4)
-		{
-			ft_putchar(tet->blocks[y][x]);
-			x++;
-		}
-		ft_putchar('\n');
-		y++;
-	}
-	ft_putchar('\n');
-}*/
 
 int		main(int argc, char **argv)
 {
@@ -53,7 +30,6 @@ int		main(int argc, char **argv)
 		ft_putstr("error\n");
 		return (2);
 	}
-	//ft_lstiter(tets, print_tets);
 	if (!find_square(tets, num_of_tetriminos))
 	{
 		ft_putstr("malloc error\n");

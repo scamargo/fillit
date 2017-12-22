@@ -6,7 +6,7 @@
 /*   By: scamargo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/17 21:46:15 by scamargo          #+#    #+#             */
-/*   Updated: 2017/12/20 22:08:57 by scamargo         ###   ########.fr       */
+/*   Updated: 2017/12/21 18:16:54 by scamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 
 void	ft_destroy_chartable(char **tab)
 {
-	free(tab[0]); 
+	free(tab[0]);
 	free(tab);
 }
