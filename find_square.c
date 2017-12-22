@@ -6,7 +6,7 @@
 /*   By: scamargo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 22:09:23 by scamargo          #+#    #+#             */
-/*   Updated: 2017/12/21 15:13:20 by scamargo         ###   ########.fr       */
+/*   Updated: 2017/12/21 16:42:39 by scamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,7 +146,7 @@ static int	add_tetrimino(t_list *tets, char **canvas, int side_length)
 	return (0);
 }
 
-int			find_square(t_list *tets, size_t number_of_tetriminos)
+int			find_square(t_list *tets, int number_of_tetriminos)
 {
 	int		side_length;
 	char	**canvas;

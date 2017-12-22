@@ -6,7 +6,7 @@
 /*   By: scamargo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 12:32:08 by scamargo          #+#    #+#             */
-/*   Updated: 2017/12/21 15:11:44 by scamargo         ###   ########.fr       */
+/*   Updated: 2017/12/21 16:59:43 by scamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 #define BUFF_SIZE 545
 
-static int is_valid_tetrimino(char str[4][4])
+static int		is_valid_tetrimino(char str[4][4])
 {
 	/*Square*/
 	/*Line vert*/
@@ -38,28 +38,27 @@ static int is_valid_tetrimino(char str[4][4])
 	/*S rot*/
 	/*Z*/
 	/*Z rot*/
-
-	if ((str[0][0] == str[0][1] && str[1][0] == str[1][1]) ||
-		(str[0][0] == str[1][0] && str[2][0] == str[3][0]) ||
-		(str[0][0] == str[0][1] && str[0][2] == str[0][3]) ||
-		(str[0][0] == str[0][1] && str[0][2] == str[1][1]) ||
-		(str[0][1] == str[1][0] && str[1][1] == str[1][2]) ||
-		(str[1][0] == str[0][1] && str[1][1] == str[2][1]) ||
-		(str[0][0] == str[1][0] && str[2][0] == str[1][1]) ||
-		(str[0][1] == str[1][1] && str[2][1] == str[2][0]) ||
-		(str[0][0] == str[0][1] && str[1][0] == str[2][0]) ||
-		(str[0][0] == str[1][0] && str[1][1] == str[1][2]) ||
-		(str[0][0] == str[0][1] && str[0][2] == str[1][2]) ||
-		(str[0][0] == str[1][0] && str[2][0] == str[2][1]) ||
-		(str[0][0] == str[0][1] && str[1][0] == str[2][0]) ||
-		(str[0][0] == str[1][0] && str[0][1] == str[0][2]) ||
-		(str[1][0] == str[1][1] && str[1][2] == str[0][2]) ||
-		(str[0][2] == str[0][1] && str[1][1] == str[1][0]) ||
-		(str[0][0] == str[1][0] && str[1][1] == str[2][1]) ||
-		(str[0][0] == str[0][1] && str[1][1] == str[1][2]) ||
-		(str[2][0] == str[1][0] && str[1][1] == str[0][1]))
+	if ((ft_isalpha(str[0][0]) &&  ft_isalpha(str[0][1]) &&  ft_isalpha(str[1][0]) &&  ft_isalpha(str[1][1])) ||
+		(ft_isalpha(str[0][0]) &&  ft_isalpha(str[1][0]) &&  ft_isalpha(str[2][0]) &&  ft_isalpha(str[3][0])) ||
+		(ft_isalpha(str[0][0]) &&  ft_isalpha(str[0][1]) &&  ft_isalpha(str[0][2]) &&  ft_isalpha(str[0][3])) ||
+		(ft_isalpha(str[0][0]) &&  ft_isalpha(str[0][1]) &&  ft_isalpha(str[0][2]) &&  ft_isalpha(str[1][1])) ||
+		(ft_isalpha(str[0][1]) &&  ft_isalpha(str[1][0]) &&  ft_isalpha(str[1][1]) &&  ft_isalpha(str[1][2])) ||
+		(ft_isalpha(str[1][0]) &&  ft_isalpha(str[0][1]) &&  ft_isalpha(str[1][1]) &&  ft_isalpha(str[2][1])) ||
+		(ft_isalpha(str[0][0]) &&  ft_isalpha(str[1][0]) &&  ft_isalpha(str[2][0]) &&  ft_isalpha(str[1][1])) ||
+		(ft_isalpha(str[0][1]) &&  ft_isalpha(str[1][1]) &&  ft_isalpha(str[2][1]) &&  ft_isalpha(str[2][0])) ||
+		(ft_isalpha(str[0][0]) &&  ft_isalpha(str[0][1]) &&  ft_isalpha(str[1][0]) &&  ft_isalpha(str[2][0])) ||
+		(ft_isalpha(str[0][0]) &&  ft_isalpha(str[1][0]) &&  ft_isalpha(str[1][1]) &&  ft_isalpha(str[1][2])) ||
+		(ft_isalpha(str[0][0]) &&  ft_isalpha(str[0][1]) &&  ft_isalpha(str[0][2]) &&  ft_isalpha(str[1][2])) ||
+		(ft_isalpha(str[0][0]) &&  ft_isalpha(str[1][0]) &&  ft_isalpha(str[2][0]) &&  ft_isalpha(str[2][1])) ||
+		(ft_isalpha(str[0][0]) &&  ft_isalpha(str[0][1]) &&  ft_isalpha(str[1][0]) &&  ft_isalpha(str[2][0])) ||
+		(ft_isalpha(str[0][0]) &&  ft_isalpha(str[1][0]) &&  ft_isalpha(str[0][1]) &&  ft_isalpha(str[0][2])) ||
+		(ft_isalpha(str[1][0]) &&  ft_isalpha(str[1][1]) &&  ft_isalpha(str[1][2]) &&  ft_isalpha(str[0][2])) ||
+		(ft_isalpha(str[0][2]) &&  ft_isalpha(str[0][1]) &&  ft_isalpha(str[1][1]) &&  ft_isalpha(str[1][0])) ||
+		(ft_isalpha(str[0][0]) &&  ft_isalpha(str[1][0]) &&  ft_isalpha(str[1][1]) &&  ft_isalpha(str[2][1])) ||
+		(ft_isalpha(str[0][0]) &&  ft_isalpha(str[0][1]) &&  ft_isalpha(str[1][1]) &&  ft_isalpha(str[1][2])) ||
+		(ft_isalpha(str[0][0]) && ft_isalpha(str[0][1]) && ft_isalpha(str[1][1]) && ft_isalpha(str[2][1])) ||
+		(ft_isalpha(str[2][0]) &&  ft_isalpha(str[1][0]) &&  ft_isalpha(str[1][1]) &&  ft_isalpha(str[0][1])))
 			return (1);
-
 	return (0);
 }
 
@@ -154,7 +153,7 @@ static int	is_valid_square(char *input, int *i_ptr, t_list **tet_ptr, int count)
 	return (1);
 }
 
-int			is_valid_input(char *input_file, t_list **tets, size_t *num_of_tetriminos)
+int			is_valid_input(char *input_file, t_list **tets, int *num_of_tetriminos)
 {
 	int		file_descriptor;
 	int		reader;
@@ -179,7 +178,6 @@ int			is_valid_input(char *input_file, t_list **tets, size_t *num_of_tetriminos)
 			return (0);
 		ft_lstaddtoend(tets, current_tet);
 		(*num_of_tetriminos)++;
-		//ft_lstadd(tets, current_tet);
 		if (buff[i] == '\0')
 			break ;
 		if (buff[i++] != '\n')

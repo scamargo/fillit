@@ -6,7 +6,7 @@
 /*   By: scamargo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 12:15:26 by scamargo          #+#    #+#             */
-/*   Updated: 2017/12/21 14:56:39 by scamargo         ###   ########.fr       */
+/*   Updated: 2017/12/21 16:41:19 by scamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 int		main(int argc, char **argv)
 {
 	t_list	*tets;
-	size_t	num_of_tetriminos;
+	int		num_of_tetriminos;
 
 	num_of_tetriminos = 0;
 	tets = NULL;
