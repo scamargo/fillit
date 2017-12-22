@@ -6,7 +6,7 @@
 /*   By: scamargo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 12:30:20 by scamargo          #+#    #+#             */
-/*   Updated: 2017/12/21 22:18:47 by scamargo         ###   ########.fr       */
+/*   Updated: 2017/12/21 23:26:38 by scamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,5 +30,8 @@ typedef struct	s_tet
 
 int				is_valid_input(char *file_name, t_list **tets, int *count);
 int				find_square(t_list *tets, int num_of_tetriminos);
+void			print_square(char **canvas, int len);
+char			**init_canvas(int len);
+int				add_tetrimino(t_list *ts, char **canvas, int l);
 
 #endif

@@ -6,45 +6,12 @@
 /*   By: scamargo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/12 22:09:23 by scamargo          #+#    #+#             */
-/*   Updated: 2017/12/21 22:27:08 by scamargo         ###   ########.fr       */
+/*   Updated: 2017/12/21 23:32:50 by scamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include "libft.h"
-
-static void	print_square(char **canvas, int len)
-{
-	int y;
-	int x;
-
-	y = 0;
-	while (y < len)
-	{
-		x = 0;
-		while (x < len)
-		{
-			ft_putchar(canvas[y][x]);
-			x++;
-		}
-		ft_putchar('\n');
-		y++;
-	}
-}
-
-static char	**init_canvas(int len)
-{
-	char	**canvas;
-	int		y;
-	int		x;
-
-	if (!(canvas = ft_init_chartable(len, len)))
-		return (NULL);
-	BEGIN_TABLE_LOOP
-	canvas[y][x] = '.';
-	END_TABLE_LOOP
-	return (canvas);
-}
 
 static int	set_tet(t_tet *tet, char **canvas, int side_length, int start[2])
 {
@@ -75,36 +42,49 @@ static int	set_tet(t_tet *tet, char **canvas, int side_length, int start[2])
 	return (1);
 }
 
-static int	add_tetrimino(t_list *tets, char **canvas, int len)
+static int	solution_found(t_list *tets, char **canvas, int len, int start[1])
+{
+	if (set_tet((t_tet*)tets->content, canvas, len, start))
+	{
+		if (!tets->next)
+		{
+			print_square(canvas, len);
+			ft_destroy_chartable(canvas);
+			return (1);
+		}
+		if (add_tetrimino(tets->next, canvas, len))
+		{
+			ft_destroy_chartable(canvas);
+			return (1);
+		}
+	}
+	return (0);
+}
+
+int			add_tetrimino(t_list *ts, char **canvas, int l)
 {
 	char	**canvas_cpy;
 	int		y;
 	int		x;
 	int		start[2];
 
-	if (((t_tet*)tets->content)->width > len || ((t_tet*)tets->content)->height > len)
+	if (!(canvas_cpy = ft_init_chartable(l, l)))
 		return (0);
-	if (!(canvas_cpy = ft_init_chartable(len, len)))
-		return (0);
-	BEGIN_TABLE_LOOP
-	start[0] = x;
-	start[1] = y;
-	ft_memmove(canvas_cpy[0], canvas[0], len * len);
-	if (set_tet((t_tet*)tets->content, canvas_cpy, len, start))
+	y = 0;
+	while (y < l)
 	{
-		if (!tets->next)
+		x = 0;
+		while (x < l)
 		{
-			print_square(canvas_cpy, len);
-			ft_destroy_chartable(canvas_cpy);
-			return (1);
+			start[0] = x;
+			start[1] = y;
+			ft_memmove(canvas_cpy[0], canvas[0], l * l);
+			if (solution_found(ts, canvas_cpy, l, start))
+				return (1);
+			x++;
 		}
-		if (add_tetrimino(tets->next, canvas_cpy, len))
-		{
-			ft_destroy_chartable(canvas_cpy);
-			return (1);
-		}
+		y++;
 	}
-	END_TABLE_LOOP
 	ft_destroy_chartable(canvas_cpy);
 	return (0);
 }
@@ -113,7 +93,7 @@ int			find_square(t_list *tets, int number_of_tetriminos)
 {
 	int		side_length;
 	char	**canvas;
-	int total_tetriminos;
+	int		total_tetriminos;
 
 	side_length = 1;
 	total_tetriminos = number_of_tetriminos * 4;
