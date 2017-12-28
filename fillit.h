@@ -6,7 +6,7 @@
 /*   By: scamargo <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/11 12:30:20 by scamargo          #+#    #+#             */
-/*   Updated: 2017/12/21 23:26:38 by scamargo         ###   ########.fr       */
+/*   Updated: 2017/12/27 19:43:56 by scamargo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ typedef struct	s_tet
 	char	blocks[4][4];
 	int		height;
 	int		width;
+	int		x_offset;
+	int		y_offset;
 }				t_tet;
 
 # define BEGIN_TET_LOOP int y=0;int x=0;int i=0;while(y<4){x=0;while(x<4){
