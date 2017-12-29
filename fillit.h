@@ -35,5 +35,6 @@ int				find_square(t_list *tets, int num_of_tetriminos);
 void			print_square(char **canvas, int len);
 char			**init_canvas(int len);
 int				add_tetrimino(t_list *ts, char **canvas, int l);
+t_tet			*parse_tet(char *str, int tet_count);
 
 #endif

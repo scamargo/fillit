@@ -14,7 +14,7 @@ CC = gcc
 LIB = libft.a
 LIB_SRCS = *.c
 OBJS = $(LIB_SRCS:.c=.o)
-SRCS = fillit.c validations.c find_square.c canvas_helper.c
+SRCS = fillit.c validations.c find_square.c canvas_helper.c tetrimino_helper.c
 
 all:
 	$(CC) -Wextra -Wall -Werror $(SRCS) -L. -lft -o fillit -Ilibft
